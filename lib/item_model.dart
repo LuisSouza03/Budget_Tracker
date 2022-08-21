@@ -17,7 +17,7 @@ class Item {
 
     return Item(
       name: properties['Name']?['title']?[0]?['plain_text'] ?? '?',
-      category: properties['Category']?['selec']?['name'] ?? 'Any',
+      category: properties['Category']?['select']?['name'] ?? 'Any',
       price: (properties['Price']?['number'] ?? 0).toDouble(),
       date: dateStr != null ? DateTime.parse(dateStr) : DateTime.now(),
     );

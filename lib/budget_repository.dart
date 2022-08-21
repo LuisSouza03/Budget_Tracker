@@ -7,7 +7,7 @@ import 'package:budget_tracker/item_model.dart';
 import 'package:budget_tracker/failure_model.dart';
 
 class BudgetRepository {
-  static const String _baseUrl = 'https://api.notion.com/v1';
+  static const String _baseUrl = 'https://api.notion.com/v1/';
 
   final http.Client _client;
 
@@ -19,12 +19,16 @@ class BudgetRepository {
 
   Future<List<Item>> getItems() async {
     try {
-      final url = '${_baseUrl}databases/${dotenv.env['NOTION_DATABASE_ID']}';
-      final response = await _client.get(Uri.parse(url), headers: {
-        HttpHeaders.authorizationHeader:
-            'Bearer ${dotenv.env['NOTION_API_KEY']}',
-        'Notion-Version': '2022-06-28',
-      });
+      final url =
+          '${_baseUrl}databases/${dotenv.env['NOTION_DATABASE_ID']}/query';
+      final response = await _client.post(
+        Uri.parse(url),
+        headers: {
+          HttpHeaders.authorizationHeader:
+              'Bearer ${dotenv.env['NOTION_API_KEY']}',
+          'Notion-Version': '2021-05-13',
+        },
+      );
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body) as Map<String, dynamic>;
@@ -33,7 +37,7 @@ class BudgetRepository {
       } else {
         throw const Failure(message: 'Something went wrong!');
       }
-    } catch (err) {
+    } catch (_) {
       throw const Failure(message: 'Something went wrong!');
     }
   }
