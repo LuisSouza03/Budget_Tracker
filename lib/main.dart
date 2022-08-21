@@ -1,9 +1,11 @@
 import 'package:budget_tracker/budget_repository.dart';
 import 'package:budget_tracker/spending_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:budget_tracker/failure_model.dart';
 import 'package:intl/intl.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 
 import 'item_model.dart';
 
@@ -87,7 +89,7 @@ class _BudgetScreenState extends State<BudgetScreen> {
                           '${item.category} - ${DateFormat('dd/MM/yyyy').format(item.date)} ',
                         ),
                         trailing: Text(
-                          '-\$${item.price.toStringAsFixed(2)}',
+                          '-R\$${item.price.toStringAsFixed(2).replaceAll('.', ',')}',
                         ),
                       ),
                     );
@@ -120,6 +122,7 @@ Color getCategoryColor(String category) {
       return Colors.orange[400]!;
   }
 }
+
 
 // Color getCategoryColor(String category) {
 //   switch (category) {
