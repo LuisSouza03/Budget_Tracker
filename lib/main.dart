@@ -2,6 +2,7 @@ import 'package:budget_tracker/budget_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:budget_tracker/failure_model.dart';
+import 'package:intl/intl.dart';
 
 import 'item_model.dart';
 
@@ -74,6 +75,12 @@ class _BudgetScreenState extends State<BudgetScreen> {
                   ),
                   child: ListTile(
                     title: Text(item.name),
+                    subtitle: Text(
+                      '${item.category} - ${DateFormat('dd/MM/yyyy').format(item.date)} ',
+                    ),
+                    trailing: Text(
+                      '-\$${item.price.toStringAsFixed(2)}',
+                    ),
                   ),
                 );
               },
