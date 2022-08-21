@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:budget_tracker/item_model.dart';
+import 'package:budget_tracker/failure_model.dart';
 
 class BudgetRepository {
   static const String _baseUrl = 'https://api.notion.com/v1';
