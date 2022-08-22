@@ -1,6 +1,7 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:budget_tracker/main.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:budget_tracker/item_model.dart';
 
@@ -39,7 +40,7 @@ class SpendingChart extends StatelessWidget {
                           PieChartSectionData(
                             color: getCategoryColor(category),
                             radius: 100.0,
-                            title: '\$${amountSpent.toStringAsFixed(2)}',
+                            title: 'R\$${amountSpent.toStringAsFixed(2)}',
                             value: amountSpent,
                           ),
                         ))
